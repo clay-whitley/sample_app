@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:session][:email])
 		if user && user.authenticate(params[:session][:password])
 			#sign in user and redirect to user's show page, sign_in is helper func
+			flash[:success] = 'Sign in successful'
 			sign_in user
 			redirect_to user
 		else
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		# call helper func from session helper module
+		flash[:alert] = 'Log out successful'
 		sign_out
 		redirect_to root_path
 	end
