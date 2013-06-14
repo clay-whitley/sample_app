@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 			#sign in user and redirect to user's show page, sign_in is helper func
 			flash[:success] = 'Sign in successful'
 			sign_in user
-			redirect_to user
+			redirect_back_or user # session helper function
 		else
 			#create error message and re-render signin form
 			flash.now[:error] = 'Invalid email/password combination'

@@ -1,0 +1,8 @@
+<li>
+	<%= gravatar_for user %>
+	<%= link_to user.name, user %>
+	<!-- checks if the current user is an admin, and if it matches with the currented iterated over user -->
+	<% if current_user.admin? && !current_user?(user) %>
+		<%= link_to "delete", user, method: :delete, confirm: 'You sure?' %>
+	<% end %>
+</li>
