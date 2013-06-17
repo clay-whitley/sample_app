@@ -9,6 +9,14 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	def signed_in_user
+    # uses shortcut to assigning flash[:notice]
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
+
 	def sign_out
 		self.current_user = nil
 		cookies.delete(:remember_token)
