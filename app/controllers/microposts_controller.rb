@@ -8,7 +8,7 @@ class MicropostsController < ApplicationController
 			flash[:success] = "Micropost created!"
 			redirect_to root_path
 		else
-			@feed_items = []
+			@feed_items = current_user.feed.paginate(page: params[:page])
 			render 'static_pages/home'
 		end
 	end
@@ -16,6 +16,7 @@ class MicropostsController < ApplicationController
 	def destroy
 		# @micropost is defined in the private callback func that executes before destroy is called
 		@micropost.destroy
+		flash[:success] = "Micropost destroyed"
 		redirect_back_or root_path
 	end
 
