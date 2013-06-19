@@ -28,8 +28,20 @@ describe "MicropostPages" do
 
   		describe "success message" do
   			before { click_button "Post" }
-  			it { should have_content('success') }
+  			it { should have_content('Micropost created!') }
   		end
   	end
+  end
+
+  describe "micropost deletion" do
+    before { FactoryGirl.create(:micropost, user: user) }
+
+    describe "as correct user" do
+      before { visit root_path }
+
+      it "should delete a micropost" do
+        expect { click_link "delete" }.should change(Micropost, :count).by(-1)
+      end
+    end
   end
 end
