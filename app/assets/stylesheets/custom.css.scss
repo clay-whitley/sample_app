@@ -167,6 +167,14 @@ aside {
 	}
 }
 
+.user_avatars {
+	overflow: auto;
+	margin-top: 10px;
+	.gravatar {
+		margin: 1px 1px;
+	}
+}
+
 .gravatar {
 	float: left;
 	margin-right: 10px;
